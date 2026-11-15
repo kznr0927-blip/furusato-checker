@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ふるさと納税 上限ズレチェッカー｜不動産の赤字・住宅ローン控除・iDeCoがある会社員向け（2026年分）</title>
+<meta name="description" content="不動産・副業の赤字、iDeCo、16歳以上の扶養、住宅ローン控除がある会社員向け。年収だけの早見表とのズレと理由が30秒でわかる、ふるさと納税の上限チェッカー（2026年分・無料・登録不要）。">
+<link rel="canonical" href="https://kznr0927-blip.github.io/furusato-checker/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ふるさと納税 上限ズレチェッカー（2026年分）">
+<meta property="og:description" content="不動産・副業の赤字、iDeCo、16歳以上の扶養、住宅ローン控除がある会社員向け。年収だけの早見表とのズレと理由が30秒でわかる、ふるさと納税の上限チェッカー（2026年分・無料・登録不要）。">
+<meta property="og:url" content="https://kznr0927-blip.github.io/furusato-checker/">
+<meta name="twitter:card" content="summary">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+/* 1カラムの計算ツール：上に入力、下に結果カード。お金・家の配色(紺×金)をnoteと合わせる */
+:root{
+  --bg:#F6F7F9; --surface:#FFFFFF; --ink:#16233A; --muted:#5B6678; --line:#DCE1E8;
+  --navy:#1F3A5F; --gold:#C98F1C; --gold-soft:#FBF1DC;
+  --ok:#2E7D4F; --warn:#B7791F; --bad:#B23A2E; --bad-soft:#FBE9E6; --warn-soft:#FDF3E1; --ok-soft:#E6F3EB;
+  --f-head:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --f-body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1724; --surface:#172234; --ink:#E7ECF3; --muted:#9AA6B8; --line:#2A3850;
+  --navy:#8FB3E0; --gold:#E8B04B; --gold-soft:#3A2F1A;
+  --ok:#6CC08F; --warn:#E8B04B; --bad:#F08A7C; --bad-soft:#3A2020; --warn-soft:#3A2F1A; --ok-soft:#1A3326; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1724; --surface:#172234; --ink:#E7ECF3; --muted:#9AA6B8; --line:#2A3850;
+  --navy:#8FB3E0; --gold:#E8B04B; --gold-soft:#3A2F1A;
+  --ok:#6CC08F; --warn:#E8B04B; --bad:#F08A7C; --bad-soft:#3A2020; --warn-soft:#3A2F1A; --ok-soft:#1A3326; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.7}
+.wrap{max-width:720px;margin:0 auto;padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
+header .eyebrow{font-size:12px;letter-spacing:.08em;color:var(--gold);font-weight:700}
+h1{font-family:var(--f-head);font-weight:900;font-size:clamp(24px,5.4vw,34px);line-height:1.3;margin:4px 0 8px;text-wrap:balance;color:var(--ink)}
+.lead{color:var(--muted);margin:0;max-width:60ch}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.panel h2{font-family:var(--f-head);font-size:17px;margin:0 0 14px;color:var(--navy)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field.full{grid-column:1/-1}
+label{font-weight:700;font-size:14px}
+.hint{font-size:12px;color:var(--muted);line-height:1.5}
+.inrow{display:flex;align-items:center;gap:8px}
+input[type=number]{width:100%;font:inherit;font-size:17px;font-variant-numeric:tabular-nums;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+input[type=number]:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
+.unit{color:var(--muted);white-space:nowrap}
+select{font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
+.kids{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kids .inrow{flex-direction:column;align-items:stretch;gap:2px}
+.kids span{font-size:12px;color:var(--muted)}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{flex:1;font:inherit;font-size:14px;padding:9px 6px;border:0;background:var(--bg);color:var(--muted);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--navy);color:var(--surface);font-weight:700}
+.sample{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;background:var(--gold-soft);border-radius:10px;padding:8px 12px}
+.sample button{font:inherit;font-size:13px;background:none;border:1px solid var(--gold);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
+.result{display:flex;flex-direction:column;gap:16px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:480px){.compare{grid-template-columns:1fr}}
+.num{border-radius:12px;padding:14px 16px;border:1px solid var(--line);min-width:0}
+.num .k{font-size:13px;color:var(--muted)}
+.num .v{font-family:var(--f-head);font-weight:900;font-size:clamp(24px,6vw,32px);font-variant-numeric:tabular-nums;line-height:1.25}
+.num .s{font-size:12px;color:var(--muted)}
+.num.mine{border:2px solid var(--navy)}
+.verdict{border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.verdict .pill{flex:none;font-family:var(--f-head);font-weight:900;font-size:15px;border-radius:999px;padding:4px 14px;color:var(--surface)}
+.verdict p{margin:0}
+.v-big{background:var(--bad-soft)} .v-big .pill{background:var(--bad)}
+.v-mid{background:var(--warn-soft)} .v-mid .pill{background:var(--warn)}
+.v-small{background:var(--ok-soft)} .v-small .pill{background:var(--ok)}
+.reasons{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+.reasons li::marker{color:var(--gold)}
+.cta{background:var(--navy);color:var(--surface);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px}
+:root[data-theme="dark"] .cta{color:#0F1724}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .cta{color:#0F1724}}
+.cta h2{font-family:var(--f-head);margin:0;font-size:18px;color:inherit}
+.cta p{margin:0;opacity:.92}
+.links{display:flex;flex-direction:column;gap:8px}
+.links a{display:flex;justify-content:space-between;gap:10px;align-items:center;text-decoration:none;color:var(--ink);background:var(--surface);border-radius:10px;padding:11px 14px;font-weight:700;border:2px solid transparent}
+.links a.rec{border-color:var(--gold)}
+.links a .p{flex:none;color:var(--gold);font-variant-numeric:tabular-nums}
+.links a small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.note{font-size:12px;color:var(--muted);line-height:1.6}
+.note ul{margin:6px 0 0;padding-left:1.2em}
+footer{font-size:12px;color:var(--muted);text-align:center}
+footer a{color:var(--navy)}
+@media (prefers-reduced-motion:no-preference){.num .v{transition:color .2s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">2026年（令和8年）分 ・ 無料 ・ 30秒</div>
+  <h1>ふるさと納税、早見表の上限で寄附して大丈夫？</h1>
+  <p class="lead">不動産や副業の赤字、住宅ローン控除、iDeCoがある会社員は、年収だけの早見表より上限が下がることがあります。5つ入れると、早見表とのズレと理由がわかります。</p>
+</header>
+
+<section class="panel" aria-labelledby="in-h">
+  <h2 id="in-h">あなたの条件（ざっくりでOK）</h2>
+  <div class="sample" id="sampleBar"><span>いま入っているのは<b>入力例</b>です（年収800万円・不動産の赤字100万円）。</span><button type="button" id="clearBtn">自分の数字を入れる</button></div>
+  <div class="grid" style="margin-top:14px">
+    <div class="field">
+      <label for="salary">① 給与の年収（額面）</label>
+      <div class="inrow"><input type="number" id="salary" inputmode="decimal" min="0" step="10" value="800"><span class="unit">万円</span></div>
+      <span class="hint">源泉徴収票の「支払金額」。ボーナス込み</span>
+    </div>
+    <div class="field">
+      <label for="side">② 不動産・副業の所得</label>
+      <div class="inrow"><input type="number" id="side" inputmode="decimal" step="10" value="-100"><span class="unit">万円</span></div>
+      <span class="hint">収入−経費。<b>赤字はマイナス</b>で（例：−100）。なければ0</span>
+    </div>
+    <div class="field full">
+      <label id="fam-l">③ 家族</label>
+      <div class="seg" role="group" aria-labelledby="fam-l">
+        <button type="button" id="spNo" aria-pressed="false">配偶者の控除なし（独身・共働き）</button>
+        <button type="button" id="spYes" aria-pressed="true">配偶者の控除あり</button>
+      </div>
+      <div class="kids" style="margin-top:8px">
+        <div class="inrow"><span>15歳以下の子</span><input type="number" id="k15" min="0" max="9" value="1" aria-label="15歳以下の子の人数"></div>
+        <div class="inrow"><span>16〜18歳</span><input type="number" id="k16" min="0" max="9" value="0" aria-label="16〜18歳の扶養家族の人数"></div>
+        <div class="inrow"><span>19〜22歳</span><input type="number" id="k19" min="0" max="9" value="0" aria-label="19〜22歳の扶養家族の人数"></div>
+      </div>
+      <span class="hint">年齢は2026年12月31日時点。扶養している人数</span>
+    </div>
+    <div class="field">
+      <label for="loan">④ 住宅ローンの年末残高</label>
+      <div class="inrow"><input type="number" id="loan" inputmode="decimal" min="0" step="100" value="0"><span class="unit">万円</span></div>
+      <span class="hint">住宅ローン控除を受けている人だけ。なければ0</span>
+    </div>
+    <div class="field">
+      <label for="ideco">⑤ iDeCoの掛金（月額）</label>
+      <div class="inrow"><input type="number" id="ideco" inputmode="decimal" min="0" step="0.1" value="0"><span class="unit">万円/月</span></div>
+      <span class="hint">例：2.3万円なら 2.3。なければ0</span>
+    </div>
+    <div class="field full">
+      <label id="how-l">ふるさと納税の手続き</label>
+      <div class="seg" role="group" aria-labelledby="how-l">
+        <button type="button" id="hwKaku" aria-pressed="true">確定申告</button>
+        <button type="button" id="hwOne" aria-pressed="false">ワンストップ特例</button>
+      </div>
+      <span class="hint">不動産・副業の所得がある人や、住宅ローン控除の1年目は確定申告になります</span>
+    </div>
+  </div>
+</section>
+
+<section class="result" aria-live="polite" aria-labelledby="out-h">
+  <h2 id="out-h" style="font-family:var(--f-head);font-size:17px;margin:0;color:var(--navy)">結果</h2>
+  <div class="compare">
+    <div class="num"><div class="k">年収と家族だけで見た上限（早見表と同じ考え方）</div><div class="v" id="vHaya">—</div><div class="s">赤字・ローン控除・iDeCoを入れない場合</div></div>
+    <div class="num mine"><div class="k">あなたの条件での上限の目安</div><div class="v" id="vMine">—</div><div class="s" id="vMineS">自己負担2,000円込み</div></div>
+  </div>
+  <div class="verdict" id="verdict"><span class="pill" id="vPill">—</span><p id="vText"></p></div>
+  <div class="panel" style="padding:16px 18px">
+    <h2 style="margin-bottom:8px">ズレる理由</h2>
+    <ul class="reasons" id="reasons"></ul>
+  </div>
+  <div class="cta">
+    <h2 id="ctaH">正確な上限は、源泉徴収票を写すだけのシートで</h2>
+    <p id="ctaP">このチェッカーは社会保険料を年収の14〜16%と仮定した目安です。源泉徴収票の数字をそのまま入れると、1円単位の上限と、住宅ローン控除が使い切れているかまでわかるExcelシートを用意しています。</p>
+    <div class="links">
+      <a id="lnkDai" href="https://note.com/greatplyar_sk/n/n31c802159480" target="_blank" rel="noopener"><span>会社員大家向けシート<small>不動産・副業の赤字の見込みを入れるだけ</small></span><span class="p">¥1,480</span></a>
+      <a id="lnkHome" href="https://note.com/greatplyar_sk/n/nd0605c544082" target="_blank" rel="noopener"><span>マイホームの会社員向けシート<small>住宅ローン控除が消えていないかもわかる</small></span><span class="p">¥980</span></a>
+      <a id="lnkMag" href="https://note.com/greatplyar_sk/m/m5b9e87f91d9e" target="_blank" rel="noopener"><span>2本まとめたマガジン<small>シート2本＋住宅ローン7行の体験記。単品合計3,440円</small></span><span class="p">¥2,480</span></a>
+    </div>
+  </div>
+  <div class="note">
+    <b>計算の前提</b>
+    <ul>
+      <li>2026年（令和8年）分の所得税・住民税のルールで計算した概算です。基礎控除は2026年分の額を使っています。</li>
+      <li>社会保険料は年収の15%（幅は14〜16%）、生命保険料控除などその他の控除は0円として計算しています。実際の上限はこれより少し高くなることがあります。</li>
+      <li>住宅ローン控除は年末残高×0.7%（上限35万円）で見ています。家の種類や入居年で上限は変わります。</li>
+      <li>入力した数字はこの画面の中だけで計算し、どこにも送信・保存しません。</li>
+      <li>税額を保証するものではありません。最終的な判断は、源泉徴収票や住民税の決定通知書で確認してください。</li>
+    </ul>
+  </div>
+</section>
+
+<footer>作成：<a href="https://note.com/greatplyar_sk" target="_blank" rel="noopener">GPS（note）</a> 投資物件2戸・住宅ローンあり・毎年確定申告している会社員です</footer>
+</div>
+<script>
+// 2026年(令和8年)分の概算。単位は円。
+function kyuyoShotoku(s){
+  if(s<=1900000) return Math.max(s-650000,0);
+  if(s<=3600000) return s-(s*0.3+80000);
+  if(s<=6600000) return s-(s*0.2+440000);
+  if(s<=8500000) return s-(s*0.1+1100000);
+  return s-1950000;
+}
+function kisoIT(g){ // 所得税の基礎控除(2026年分)
+  if(g<=4890000) return 1040000;
+  if(g<=6550000) return 670000;
+  if(g<=23500000) return 620000;
+  if(g<=24000000) return 480000;
+  if(g<=24500000) return 320000;
+  if(g<=25000000) return 160000;
+  return 0;
+}
+function itax(t){
+  t=Math.floor(t/1000)*1000; if(t<=0) return {tax:0,rate:0};
+  const b=[[1949000,.05,0],[3299000,.10,97500],[6949000,.20,427500],[8999000,.23,636000],[17999000,.33,1536000],[39999000,.40,2796000],[Infinity,.45,4796000]];
+  for(const [lim,r,d] of b) if(t<=lim) return {tax:Math.max(t*r-d,0),rate:r};
+}
+function rateFor(base){ // 特例控除の割合を決める所得税率
+  if(base<0) return 0;
+  if(base<=1950000) return .05; if(base<=3300000) return .10; if(base<=6950000) return .20;
+  if(base<=9000000) return .23; if(base<=18000000) return .33; if(base<=40000000) return .40; return .45;
+}
+// p: {salary, spouse(bool), kids15, kids16, kids19, side(所得,赤字は負), loanBal, idecoM, onestop(bool), shaRate}
+function calcLimit(p){
+  const sal=p.salary, sha=Math.round(sal*(p.shaRate??0.15));
+  const under23=(p.kids15||0)+(p.kids16||0)+(p.kids19||0);
+  let kg=kyuyoShotoku(sal);
+  if(sal>8500000 && under23>0) kg-=Math.min(sal-8500000,1500000)*0.1;
+  const gokei=Math.max(kg+(p.side||0),0);
+  const ide=(p.idecoM||0)*12;
+  // 配偶者控除(所得税/住民税)
+  let spIT=0, spRT=0;
+  if(p.spouse){ if(gokei<=9000000){spIT=380000;spRT=330000;} else if(gokei<=9500000){spIT=260000;spRT=220000;} else if(gokei<=10000000){spIT=130000;spRT=110000;} }
+  const fuyoIT=(p.kids16||0)*380000+(p.kids19||0)*630000;
+  const fuyoRT=(p.kids16||0)*330000+(p.kids19||0)*450000;
+  const jintekiSa=50000+(spRT?50000:0)+(p.kids16||0)*50000+(p.kids19||0)*180000;
+  // 住民税
+  const rtKazei=Math.max(Math.floor((gokei-sha-ide-430000-spRT-fuyoRT)/1000)*1000,0);
+  let chosei = rtKazei<=2000000 ? Math.min(jintekiSa,rtKazei)*0.05 : Math.max((jintekiSa-(rtKazei-2000000))*0.05,2500);
+  if(rtKazei===0) chosei=0;
+  const shotokuwari=Math.max(rtKazei*0.10-chosei,0);
+  const rate=rateFor(rtKazei-jintekiSa);
+  const limit=shotokuwari*0.2/(0.9-rate*1.021)+2000;
+  // 所得税と住宅ローン控除の取りこぼし
+  const itBase=gokei-sha-ide-kisoIT(gokei)-spIT-fuyoIT;
+  const loan=Math.min((p.loanBal||0)*0.007,350000);
+  function lost(kifu){
+    const ded = p.onestop?0:Math.max(Math.min(kifu,gokei*0.4)-2000,0);
+    const t=itax(itBase-ded); const left=Math.max(loan-t.tax,0);
+    const cap=Math.min(Math.max(Math.floor((itBase-ded)/1000)*1000,0)*0.05,97500);
+    return Math.max(left-cap,0);
+  }
+  return {gokei,rtKazei,shotokuwari,rate,limit,loan,lostNo:lost(0),lostAt:lost(limit)};
+}
+
+const $=id=>document.getElementById(id);
+const st={spouse:true,onestop:false};
+const man=v=>{const n=parseFloat(v);return isFinite(n)?n*10000:0;};
+const cnt=v=>Math.max(0,Math.min(9,parseInt(v)||0));
+const fmt=y=>(Math.floor(y/1000)/10).toFixed(1)+'万円';
+const yen=y=>Math.round(y).toLocaleString('ja-JP')+'円';
+function seg(a,b,key,val){[a,b].forEach(x=>x.setAttribute('aria-pressed',String(x===(val?b:a))));st[key]=val;}
+function render(){
+  const base={salary:man($('salary').value),spouse:st.spouse,kids15:cnt($('k15').value),kids16:cnt($('k16').value),kids19:cnt($('k19').value)};
+  const full={...base,side:man($('side').value),loanBal:man($('loan').value),idecoM:man($('ideco').value),onestop:st.onestop};
+  if(base.salary<=0){$('vHaya').textContent='—';$('vMine').textContent='—';$('vPill').textContent='—';$('vText').textContent='年収を入れてください。';$('reasons').innerHTML='';return;}
+  const h=calcLimit({...base,shaRate:.15}).limit;
+  const r=calcLimit({...full,shaRate:.15}), lo=calcLimit({...full,shaRate:.16}).limit, hi=calcLimit({...full,shaRate:.14}).limit;
+  const rh=calcLimit({...base,shaRate:.15});
+  $('vHaya').textContent='約'+fmt(h);
+  $('vMine').textContent=fmt(Math.min(lo,hi))+'〜'+fmt(Math.max(lo,hi)).replace('万円','')+'万円';
+  const diff=h-r.limit, pct=h>0?diff/h:0;
+  const v=$('verdict'), lostAdd=Math.max(r.lostAt-r.lostNo,0);
+  let cls,pill,txt;
+  if(diff>=30000||pct>=0.2){cls='v-big';pill='ズレ：大';txt=`早見表の上限で寄附すると、約${fmt(diff)}が上限を超えるおそれがあります。超えた分は控除されず、そのまま自己負担になります。`;}
+  else if(diff>=10000){cls='v-mid';pill='ズレ：中';txt=`早見表より約${fmt(diff)}低い目安です。上限ぎりぎりまで寄附するなら、正確な数字で確認したほうが安心です。`;}
+  else {cls='v-small';pill='ズレ：小';txt= diff<=-10000?`早見表より約${fmt(-diff)}高い目安です。黒字の所得がある分、上限が上がっています。`:'早見表との差は1万円未満です。早見表の上限から少し余裕を残せば、大きく外れることはなさそうです。';}
+  if(lostAdd>=1000||r.lostNo>=1000){ if(cls==='v-small'){cls='v-mid';pill='注意あり';} }
+  v.className='verdict '+cls; $('vPill').textContent=pill; $('vText').textContent=txt;
+  const R=[];
+  if(full.side<0) R.push(`不動産・副業の赤字${fmt(-full.side)}で所得が下がり、住民税の所得割が減っています（上限は所得割の約2割がもとになります）。`);
+  if(full.side>0) R.push(`不動産・副業の黒字${fmt(full.side)}の分、所得が増えて上限が上がっています。`);
+  if(r.rate<rh.rate) R.push(`所得が下がって所得税率が${Math.round(rh.rate*100)}%から${Math.round(r.rate*100)}%に下がり、上限の計算式でも不利になっています。`);
+  if(full.idecoM>0) R.push(`iDeCoの掛金（年${fmt(full.idecoM*12)}）が所得から引かれる分、上限が下がっています。`);
+  if(r.loan>0){
+    if(r.lostNo>=1000||lostAdd>=1000){
+      R.push(`住宅ローン控除（年約${fmt(r.loan)}）を所得税と住民税で引ききれず、約${yen(r.lostNo)}が使い切れない見込みです。`+(lostAdd>=1000&&!st.onestop?`確定申告でふるさと納税をすると、所得税が減る分さらに約${yen(lostAdd)}が使い切れなくなります。`:''));
+    } else R.push(`住宅ローン控除（年約${fmt(r.loan)}）は、ふるさと納税をしても使い切れる見込みです。ローン控除そのものは上限を下げません。`);
+  }
+  if(!R.length) R.push('赤字・住宅ローン控除・iDeCoがないので、早見表とほぼ同じ考え方で計算できます。');
+  $('reasons').innerHTML=''; R.forEach(t=>{const li=document.createElement('li');li.textContent=t;$('reasons').appendChild(li);});
+  const dai=full.side!==0, home=r.loan>0;
+  $('lnkDai').classList.toggle('rec',dai); $('lnkHome').classList.toggle('rec',home&&!dai); $('lnkMag').classList.toggle('rec',dai&&home);
+}
+['salary','side','k15','k16','k19','loan','ideco'].forEach(id=>$(id).addEventListener('input',()=>{$('sampleBar').hidden=true;render();}));
+$('spNo').onclick=()=>{seg($('spNo'),$('spYes'),'spouse',false);render();};
+$('spYes').onclick=()=>{seg($('spNo'),$('spYes'),'spouse',true);render();};
+$('hwKaku').onclick=()=>{seg($('hwKaku'),$('hwOne'),'onestop',false);render();};
+$('hwOne').onclick=()=>{seg($('hwKaku'),$('hwOne'),'onestop',true);render();};
+$('clearBtn').onclick=()=>{['salary','side','loan','ideco','k15','k16','k19'].forEach(id=>$(id).value=id==='salary'?'':0);$('sampleBar').hidden=true;$('salary').focus();render();};
+render();
+</script>
+</body>
+</html>
